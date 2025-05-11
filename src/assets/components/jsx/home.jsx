@@ -8,7 +8,8 @@ export default function Home() {
     const username =JSON.parse(sessionStorage.getItem('whoami')).username;
     const [userQuests, setUserQuests] = useState({});
     const [questlib, setQuestlib] = useState([]);
-
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
     fetch(`http://192.168.1.196:3000/api/userquests/find?id=${username}`)
         .then(response => response.json())
