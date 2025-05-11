@@ -58,7 +58,7 @@ export default function Home() {
                 </div>
                 <div className="hpage_status_lvltxt"><span>LEVEL</span></div>
                 <div className="hpage_lvl_progressbar">
-                    <div className="hpage_lvl_progressbar_fill" style={{width: '50%'}}></div>
+                    <div className="hpage_lvl_progressbar_fill" style={{width: '0%'}}></div>
                 </div>
             </div>
 
@@ -77,7 +77,7 @@ export default function Home() {
                         <BookCheck size={25}/>  
                         <div>
                             <span className='hpage_stat_titletxt'> Quests Completed : </span>
-                            <span className='hpage_stat_value'>100</span>
+                            <span className='hpage_stat_value'>0</span>
                         </div>
                         
                     </div>
