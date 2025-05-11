@@ -1,0 +1,103 @@
+.questinfo_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0px 25px
+}
+
+.quest_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    white-space: pre;
+    text-shadow: 0px 0px 10px rgb(255, 255, 255); /* Add drop shadow */
+}
+
+.quest_description {
+    font-size: 14px;
+    /* text-align: center; */
+    color: #ffffff;
+    max-width: 700px;
+}
+
+
+.questVerification {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px
+}
+
+.quest_objective_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px
+}
+.quest_reward_list {
+    color: rgb(128, 215, 255)
+}
+
+.quest_completed {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.quest_completed_title {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(251, 255, 31);
+    
+    text-shadow: 0px 0px 15px rgb(251, 255, 17); /* Add drop shadow */
+    text-align: center;
+    margin: 0px 25px
+}
+
+.quest_verification_explanation {
+    position: relative;
+    top: -10px;
+    font-size: 12px;
+    text-align: center;
+    margin: 0px 25px;
+    color: #888
+}
+
+.quest_verification_image_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0px 25px;
+}
+.quest_verification_image {
+    width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+    border: 1px solid #30303a;
+    background-color: #1b1b20;
+}
+
+.quest_objective_title, .quest_reward_title, .quest_verification_title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.upload_verification_button {
+    background-color: transparent;
+    color: white;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    padding: 15px 35px;
+    font-size: 20px;
+    
+    border: 1px solid #30303a;
+    cursor: pointer;
+}
+

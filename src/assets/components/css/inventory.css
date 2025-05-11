@@ -1,0 +1,29 @@
+.inv_title {
+    text-align: center;
+}
+
+.inv_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 20px;
+    padding: 10px;
+    border: 1px solid #30303a;
+    gap: 15px;
+    border-radius: 10px;
+}
+
+.inv_item_description {
+    font-size: 12px;
+    color: #d1d1d1;
+}
+.inv_item_titleTxt{
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.inv_item_info {
+    display: flex;
+    flex-direction: column;
+}

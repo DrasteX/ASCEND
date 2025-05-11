@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Orbitron';
+  src: url(./assets/fonts/Orbitron/Orbitron-VariableFont_wght.ttf) format('truetype');
+  
+}
+
+body {
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #111114;
+  margin-bottom: 100px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+nav.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-top: solid 1px #1b1b20;
+  background-color: #111114;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+nav.navbar a {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 12px;
+}
+

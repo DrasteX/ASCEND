@@ -1,0 +1,136 @@
+.homepage_title {
+    margin-left: 20px;
+  }
+
+  .hpage_log_btn {
+    color: white;
+    cursor: pointer;
+    background-color: #30303a;
+    
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    padding: 10px 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 1px solid #30303a;
+
+  }
+  .homepage_subtitle {
+    font-size: 14px;
+    position: relative;
+    margin-left: 22px;
+    top: -15px;
+  }
+  
+  .homepage_status {
+    margin-bottom: 50px;
+  }
+  
+  
+  .hpage_status_pfp {
+    height: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: solid 1px #1b1b20;
+  
+  }
+  .hpage_status_nametitle {
+    display: grid;
+    grid-template-columns: min-content auto;
+    white-space: nowrap;
+    gap: 10px;
+    margin: 20px 30px
+  }
+  
+  
+  
+  .hpage_status_lvlnum {
+    font-size: 80px;
+    font-weight: 500;
+    align-self: last baseline;
+  }
+  .hpage_status_lvltxt {
+    text-align: center;
+    & > span {
+      position: relative;
+      top: -15px;
+      font-weight: bold;
+    }
+  }
+  
+  .hpage_lvl_progressbar {
+    width: 100%;
+    height: 10px;
+    background-color: #1b1b20;
+    border-radius: 5px;
+    margin-top: -10px;
+  }
+  .hpage_lvl_progressbar_fill {
+    height: 100%;
+    background-color: #ffd000;
+    border-radius: 5px;
+  }
+  
+  .hpage_status_userinfo {
+    display: flex;
+    flex-direction: column;
+    align-self: last baseline;
+    & > span {
+  
+      & > span {
+        font-size: 12px;
+        color: #d1d1d1;
+      }
+    }
+  }
+  
+  .hpage_quest_item {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px;
+    padding: 17px;
+    border: 1px solid #30303a;
+    gap: 7px;
+    border-radius: 10px;
+  }
+  .hpage_quest_rewardtxt {
+    font-size: 12px;
+    color: #8acaff;
+  }
+  .hpage_quest_titletxt {
+    font-size: 16px;
+    color: #fff;
+  }
+  .homepage_quests_title{
+    margin-left: 20px;
+  }
+  
+  .hpage_quest_progressbar {
+    margin-top: 10px;
+    width: 100%;
+    height: 10px;
+    background-color: #1b1b20;
+    border-radius: 5px;
+  }
+  .hpage_quest_progressbar_fill {
+    height: 100%;
+    background-color: #8acaff;
+    border-radius: 5px;
+  }
+  .hpage_stats_title {
+    margin-left: 20px;
+  }
+  .hpage_stat_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 20px;
+    padding: 15px 10px;
+    border: 1px solid #30303a;
+    gap: 7px;
+    border-radius: 10px;
+  }
+  
+  

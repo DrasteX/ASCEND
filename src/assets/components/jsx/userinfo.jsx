@@ -1,0 +1,131 @@
+import React from 'react'
+import '../css/userinfo.css'
+import { useState, useEffect } from 'react';
+
+export default function UserInfo() {
+  const username = JSON.parse(sessionStorage.getItem('whoami')).username;
+  
+
+  const [userInfo, setUserInfo] = useState({});
+
+  useEffect(()=>{
+    fetch(`http://localhost:3000/api/userinfo/find?id=${username}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then((response) => response.json())
+      .then((data) => {
+       setUserInfo({
+        userRealName: data.userRealName || '',
+        userAge: data.userAge || '',
+        userAddress: data.userAddress || '',
+        userHobbies: data.userHobbies || '',
+        userSkills: data.userSkills || '',
+        userInterests: data.userInterests || '',
+        userAbout: data.userAbout || '',
+        userStudent: data.userStudent || 'No',
+        userProfessional: data.userProfessional || false
+       });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+  }, [username])
+
+  const handleChange = (e) => {
+  const { id, value } = e.target;
+
+  let newValue = value;
+
+  // Convert to boolean for userProfessional
+  if (id === 'userProfessional') {
+    newValue = value === 'true';
+  }
+
+  setUserInfo((prevState) => ({
+    ...prevState,
+    [id]: newValue,
+  }));
+};
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:3000/api/userinfo/update?id=${username}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInfo),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Response:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
+  return (
+    <div>
+      <h1 className="userinfo_title">About You</h1>
+      <form className="userinfo_container" onSubmit={handleSubmit}>
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Name </label>
+          <input onChange={handleChange} type="text" id="userRealName" className='userinfo_input' placeholder='Name' value={userInfo.userRealName } />
+        </div>
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Age</label>
+          <input  onChange={handleChange} type="text" id="userAge" className='userinfo_input' placeholder='Age' value={userInfo.userAge } />
+        </div>
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Address</label>
+          <input  onChange={handleChange} type="text" id="userAddress" className='userinfo_input' placeholder='Address'  value={userInfo.userAddress } />
+        </div>
+
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Your Hobbies </label>
+          <input  onChange={handleChange} type="text" id="userHobbies" className='userinfo_input' placeholder='What are your Hobbies?' value={userInfo.userHobbies } />
+        </div>
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Your Skills </label>
+          <input  onChange={handleChange} type="text" id="userSkills" className='userinfo_input' placeholder='What are your Skills?' value={userInfo.userSkills }/>
+        </div>
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Your Interests </label>
+          <input  onChange={handleChange} type="text" id="userInterests" className='userinfo_input' placeholder='What are your Interests?' value={userInfo.userInterests }/>
+        </div>
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Tell Us about yourself! </label>
+          <textarea  onChange={handleChange} style={{resize:"none", height: "100px", paddingTop: "15px"}} id="userAbout" name="userAbout" className='userinfo_input' placeholder='What are your goals? What do you think of yourself and people around you? Tell us whatever comes to your mind!' value={userInfo.userAbout}/>
+        </div>
+        
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Are you a Student? </label>
+          <select  onChange={handleChange} id="userStudent" className='userinfo_input' selected value={userInfo.userStudent || 'No'}>
+            <option value="Yes, School">Yes, I am in School</option>
+            <option value="Yes, College">Yes, I am in a College/University</option>
+            <option value="No">No, I am not a Student</option>
+          </select>
+        </div>
+        <div className="userinfo_item">
+          <label className='userinfo_titletxt'>Are you a Working Professional? </label>
+          <select  onChange={handleChange} id="userProfessional" className='userinfo_input' selected value={userInfo.userProfessional || false}>
+            <option value={true}>Yes, I am a Working Professional</option>
+            <option value={false}>No, I am not a Working Professional</option>
+          </select>
+        </div>
+        <div className="submitbtn_container">
+          <input  onChange={handleChange} type="submit" value="Save" className='userinfo_submitbtn'/>
+        </div>
+        
+      </form>
+
+    </div>
+  )
+}

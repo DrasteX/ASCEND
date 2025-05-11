@@ -1,0 +1,46 @@
+.login_title {
+    text-align: center;
+}
+
+.login_btn {
+    color: white;
+    text-decoration: none;
+    background-color: #30303a;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    padding: 10px 0px;
+    font-size: 20px;
+    border: 1px solid #30303a;
+    cursor: pointer;
+    
+  
+    width: 100%;
+
+}
+.loginbtn_container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.login_item {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px;
+    padding: 17px;
+    padding-right: 25px;
+    border: 1px solid #30303a;
+    gap: 12px;
+    border-radius: 10px;
+}
+
+.login_input {
+    width: 100%;
+    height: 30px;
+    background-color: #1b1b20;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+    color: #fff;
+}

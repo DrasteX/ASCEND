@@ -1,0 +1,37 @@
+.quests_title {
+    text-align: center;
+}
+
+.quest_item {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px;
+    padding: 17px;
+    border: 1px solid #30303a;
+    gap: 7px;
+    border-radius: 10px;
+  }
+.quest_rewardtxt {
+font-size: 12px;
+color: #8acaff;
+}
+.quest_titletxt {
+font-size: 16px;
+color: #fff;
+}
+.homepage_quests_title{
+margin-left: 20px;
+}
+
+.quest_progressbar {
+margin-top: 10px;
+width: 100%;
+height: 10px;
+background-color: #1b1b20;
+border-radius: 5px;
+}
+.quest_progressbar_fill {
+height: 100%;
+background-color: #8acaff;
+border-radius: 5px;
+}
