@@ -1,9 +1,11 @@
 import React from 'react'
 import '../css/quests.css'
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Quests() {
+  const navigate = useNavigate();
   const API = 'https://ascend-mauve.vercel.app'
   const username =JSON.parse(sessionStorage.getItem('whoami')).username;
   const [userQuests, setUserQuests] = useState({});
@@ -52,7 +54,7 @@ export default function Quests() {
             
             const quest = questlib.find(quest => quest._id === id);
             return (
-              <div className="quest_item" key={id} onClick={() => window.location.href = `/questinfo/${id}`}>
+              <div className="quest_item" key={id} onClick={() => navigate(`/questinfo/${id}`)}>
                 <span className='quest_titletxt'>{quest?.questTitle || "Unknown Quest"}</span>
                 <span className='quest_rewardtxt'>Reward : {quest?.questReward || "No Reward"} </span>
                 <div className="quest_progressbar">

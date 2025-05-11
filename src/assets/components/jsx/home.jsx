@@ -2,8 +2,10 @@ import React from 'react'
 import { BookCheck, ArrowBigUpDash } from 'lucide-react'
 import '../css/home.css'
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+    const navigate = useNavigate();
 
     const API = 'https://ascend-mauve.vercel.app'
 
@@ -94,7 +96,7 @@ export default function Home() {
                         
                         const quest = questlib.find(quest => quest._id === id);
                         return (
-                        <div className="hpage_quest_item" key={id} onClick={() => window.location.href = `/questinfo/${id}`}>
+                        <div className="hpage_quest_item" key={id} onClick={() => navigate(`/questinfo/${id}`)}>
                             <span className='hpage_quest_titletxt'>{quest?.questTitle || "Unknown Quest"}</span>
                             <span className='hpage_quest_rewardtxt'>Reward : {quest?.questReward || "No Reward"} </span>
                             <div className="hpage_quest_progressbar">
