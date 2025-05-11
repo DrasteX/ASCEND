@@ -50,11 +50,11 @@ export default function Home() {
         <div className="homepage_status">
             <div className="hpage_status_nametitle">
                 <div className="hpage_status_lvlnum">
-                    20
+                    01
                 </div>
                 <div className="hpage_status_userinfo">
-                    <span> <span>NAME : </span> DrasteX</span>
-                    <span> <span>TITLE : </span> The Heaven's Equal</span>
+                    <span> <span>NAME : </span> {username?.toLocaleUpperCase()}</span>
+                    <span> <span>TITLE : </span> NO TITLE EQUIPPED</span>
                 </div>
                 <div className="hpage_status_lvltxt"><span>LEVEL</span></div>
                 <div className="hpage_lvl_progressbar">
@@ -69,7 +69,7 @@ export default function Home() {
                         <ArrowBigUpDash size={25}/>
                         <div>
                             <span className='hpage_stat_titletxt'> Level : </span>
-                            <span className='hpage_stat_value'>20</span>
+                            <span className='hpage_stat_value'>01</span>
                         </div>
                         
                     </div>
