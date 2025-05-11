@@ -3,6 +3,7 @@ import '../css/questinfo.css'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 export default function QuestInfo() {
+    const API = 'https://ascend-mauve.vercel.app'
     // Get the quest ID from the URL parameters
     const {questid} = useParams();
     const [questData, setQuestData] = useState({});
@@ -10,11 +11,11 @@ export default function QuestInfo() {
     const [questImages, setQuestImages] = useState([]);
     const [userQuests, setUserQuests] = useState({});
     const username =JSON.parse(sessionStorage.getItem('whoami')).username;
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         // Fetch quest data from the server
-        fetch(`http://192.168.1.196:3000/api/questlib/find?id=${questid}`)
+        fetch(`${API}/api/questlib/find?id=${questid}`)
             .then(response => response.json())
             .then(data => {
                 setQuestData(data);
@@ -23,7 +24,7 @@ export default function QuestInfo() {
                 console.error('Error fetching quest data:', error);
             });
         
-        fetch(`http://192.168.1.196:3000/api/userquests/find?id=${username}`)
+        fetch(`${API}/api/userquests/find?id=${username}`)
             .then(response => response.json())
             .then(data => {
             setUserQuests(data);

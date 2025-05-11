@@ -4,14 +4,17 @@ import '../css/home.css'
 import { useEffect, useState } from 'react';
 
 export default function Home() {
+
+    const API = 'https://ascend-mauve.vercel.app'
+
     
     const username =JSON.parse(sessionStorage.getItem('whoami')).username;
     const [userQuests, setUserQuests] = useState({});
     const [questlib, setQuestlib] = useState([]);
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-    fetch(`http://192.168.1.196:3000/api/userquests/find?id=${username}`)
+    fetch(`${API}/api/userquests/find?id=${username}`)
         .then(response => response.json())
         .then(data => {
             setUserQuests(data);
@@ -20,7 +23,7 @@ export default function Home() {
             console.error('Error fetching user quests:', error);
         });
     
-    fetch('http://192.168.1.196:3000/api/questlib/all', {
+    fetch(`${API}/api/questlib/all`, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',

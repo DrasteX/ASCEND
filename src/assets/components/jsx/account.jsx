@@ -1,6 +1,7 @@
 import React from 'react'
 import '../css/account.css'
 export default function Login() {
+  const API = 'https://ascend-mauve.vercel.app'
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent the default form submission
     const userName = event.target.user_name.value;
@@ -17,7 +18,7 @@ export default function Login() {
     console.log('Username:', userName);
     console.log('Password:', Password);
     // Example: Send a POST request to the server
-    fetch('http://192.168.1.196:3000/api/accounts/login', {
+    fetch(`${API}/api/accounts/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

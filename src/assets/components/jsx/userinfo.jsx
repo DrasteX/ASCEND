@@ -3,13 +3,14 @@ import '../css/userinfo.css'
 import { useState, useEffect } from 'react';
 
 export default function UserInfo() {
+  const API = 'https://ascend-mauve.vercel.app'
   const username = JSON.parse(sessionStorage.getItem('whoami')).username;
   
 
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(()=>{
-    fetch(`http://localhost:3000/api/userinfo/find?id=${username}`, {
+    fetch(`${API}/api/userinfo/find?id=${username}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ export default function UserInfo() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/api/userinfo/update?id=${username}`, {
+    fetch(`${API}/api/userinfo/update?id=${username}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
