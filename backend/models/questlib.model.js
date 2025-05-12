@@ -16,6 +16,13 @@ const questlibSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    questRewardXP: {
+        type: Number,
+        required: true
+    },
+    questRewardItem:{
+        type:[]
+    }
 },
     {
         timestamps: true

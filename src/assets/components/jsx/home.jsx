@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
     const navigate = useNavigate();
-    const { userQuests, questlib, userInfo, loading } = useContext(UserContext);
+    const { userQuests, questlib, userInfo, userlvlinv, loading } = useContext(UserContext);
 
     // const API = 'https://ascend-mauve.vercel.app'
 
-    const username =JSON.parse(sessionStorage.getItem('whoami')).username;
+    // const username =JSON.parse(sessionStorage.getItem('whoami')).username;
 
     // Check if the user has filled the UserInfo form
     useEffect(() => {
@@ -19,6 +19,31 @@ export default function Home() {
             navigate('/userinfo');
         }
     }, [loading, userInfo, navigate]);
+
+    function getXpForLevel(level) {
+        return 1500 * ((level - 1) * level) / 2;
+    }
+
+    function getXpForNextLevel(level) {
+        return 1500 * level; // XP needed to go from level n to n+1
+    }
+
+    function getXpProgress(xp, level) {
+        const xpForCurrent = getXpForLevel(level);
+        const xpForNext = getXpForNextLevel(level);
+        const xpIntoLevel = xp - xpForCurrent;
+        const progress = Math.max(0, Math.min((xpIntoLevel / xpForNext) * 100, 100));
+
+        return { xpIntoLevel, xpForNext, progress };
+    }
+
+
+    const level = userlvlinv?.level || 1;
+    const xp = userlvlinv?.xp || 0;
+
+    const { xpIntoLevel, xpForNext, progress } = getXpProgress(xp, level);
+
+
 
   return (
     <div>
@@ -29,15 +54,17 @@ export default function Home() {
         <div className="homepage_status">
             <div className="hpage_status_nametitle">
                 <div className="hpage_status_lvlnum">
-                    01
+                    {String(userlvlinv?.level)?.padStart(2,'0')}
                 </div>
                 <div className="hpage_status_userinfo">
                     <span> <span>NAME : </span> {userInfo?.userRealName || "UNNAMED PLAYER"}</span>
-                    <span> <span>TITLE : </span> NO TITLE EQUIPPED</span>
+                    <span> <span>TITLE : </span> No Title</span>
+                    <span> <span>EXP : </span> {xpIntoLevel} / {xpForNext}</span>
+
                 </div>
                 <div className="hpage_status_lvltxt"><span>LEVEL</span></div>
                 <div className="hpage_lvl_progressbar">
-                    <div className="hpage_lvl_progressbar_fill" style={{width: '0%'}}></div>
+                    <div className="hpage_lvl_progressbar_fill" style={{width: `${progress}%`}}></div>
                 </div>
             </div>
 

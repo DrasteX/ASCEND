@@ -3,6 +3,10 @@ import {useState, useEffect, createContext} from 'react';
 
 export const UserContext = createContext();
 
+
+
+
+
 export function UserProvider({children}) {
     const API = 'https://ascend-mauve.vercel.app'
 
@@ -13,7 +17,8 @@ export function UserProvider({children}) {
     const [userQuests, setUserQuests] = useState({});
     const [questlib, setQuestlib] = useState([]);
     const [userInfo, setUserInfo] = useState({});
-    
+    const [userlvlinv, setUserlvlinv] = useState({});
+    const [itemlib, setitemlib] = useState([])
     const [loading, setLoading] = useState(true);
 
 
@@ -22,20 +27,26 @@ export function UserProvider({children}) {
 
         const fetchUserData = async () => {
             try {
-                const [userQuestsResponse, questlibResponse, userInfoResponse] = await Promise.all([
+                const [userQuestsResponse, questlibResponse, userInfoResponse, lvlinvResponse, itemlibResponse] = await Promise.all([
                     fetch(`${API}/api/userquests/find?id=${username}`),
                     fetch(`${API}/api/questlib/all`),
-                    fetch(`${API}/api/userinfo/find?id=${username}`)
+                    fetch(`${API}/api/userinfo/find?id=${username}`),
+                    fetch(`${API}/api/lvlinv/find?id=${username}`),
+                    fetch(`${API}/api/itemlib/find?id=${username}`)
                 ]);
 
-                const [userQuestsData, questlibData, userInfoData] = await Promise.all([
+                const [userQuestsData, questlibData, userInfoData, lvlinvData, itemlibData] = await Promise.all([
                     userQuestsResponse.json(),
                     questlibResponse.json(),
-                    userInfoResponse.json()
+                    userInfoResponse.json(),
+                    lvlinvResponse.json(),
+                    itemlibResponse.json()
                 ]);
                 setUserQuests(userQuestsData);
                 setQuestlib(questlibData);
                 setUserInfo(userInfoData);
+                setUserlvlinv(lvlinvData);
+                setitemlib(itemlibData);
                 setLoading(false);
             }
             catch (error) {
@@ -49,9 +60,43 @@ export function UserProvider({children}) {
 
     },[username])
 
+    useEffect(() => {
+        if (!userlvlinv?.xp || !username) return;
+
+        const newLevel = Math.floor((1 + Math.sqrt(1 + (8 * userlvlinv?.xp) / 1500)) / 2);
+
+        // Only update if level needs to change
+        if (newLevel !== userlvlinv.level) {
+            const updateLevel = async () => {
+                try {
+                    const response = await fetch(`${API}/api/lvlinv/update?id=${username}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ level: newLevel })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to update level');
+                    }
+
+                    const updatedData = await response.json();
+                    setUserlvlinv(updatedData); // Optional: refresh context with updated data
+                } catch (err) {
+                    console.error('Level update failed:', err);
+                }
+            };
+
+            updateLevel();
+        }
+    }, [userlvlinv, username]);
+
+
+
 
   return (
-    <UserContext.Provider value={{userQuests, questlib, userInfo, loading}}>
+    <UserContext.Provider value={{userQuests, questlib, userInfo, userlvlinv, itemlib, loading}}>
         {children}
     </UserContext.Provider>
   )
