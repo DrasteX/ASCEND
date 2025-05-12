@@ -13,7 +13,9 @@ export function UserProvider({children}) {
     const [userQuests, setUserQuests] = useState({});
     const [questlib, setQuestlib] = useState([]);
     const [userInfo, setUserInfo] = useState({});
+    
     const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         if (!username) return;

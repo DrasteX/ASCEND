@@ -32,7 +32,7 @@ export default function Home() {
                     01
                 </div>
                 <div className="hpage_status_userinfo">
-                    <span> <span>NAME : </span> {username?.toLocaleUpperCase()}</span>
+                    <span> <span>NAME : </span> {userInfo?.userRealName || "UNNAMED PLAYER"}</span>
                     <span> <span>TITLE : </span> NO TITLE EQUIPPED</span>
                 </div>
                 <div className="hpage_status_lvltxt"><span>LEVEL</span></div>

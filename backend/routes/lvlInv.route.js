@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const lvlInv = require('../models/lvlInv.model');
+const lvlInv = require('../models/lvlInv.model.js');
 
 router.get('/', async(req,res)=>{
     res.send('LEVELING AND INVENTORY SYSTEM API')
