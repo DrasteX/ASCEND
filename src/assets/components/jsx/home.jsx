@@ -1,5 +1,5 @@
 import React from 'react'
-import { BookCheck, ArrowBigUpDash } from 'lucide-react'
+// import { BookCheck, ArrowBigUpDash } from 'lucide-react'
 import '../css/home.css'
 import { useContext, useEffect} from 'react';
 import { UserContext } from '../../userContext.js';
@@ -41,7 +41,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="hpage_status_stats">
+            {/* <div className="hpage_status_stats">
                 <h2 className="hpage_stats_title">Stats</h2>
                 <div className='hpage_stats_list'>
                     <div className="hpage_stat_item">
@@ -61,7 +61,7 @@ export default function Home() {
                         
                     </div>
                 </div>
-            </div>
+            </div> */}
             
             
         </div>

@@ -3,7 +3,7 @@ const router = express.Router();
 const Account = require('../models/accounts.model.js');
 const UserInfo = require('../models/userinfo.model.js');
 const UserQuests = require('../models/userQuests.model.js');
-router.post('/', async (req, res)=>{   
+router.post('/', async (req, res) => {
     res.send('ACCOUNTS API');
 })
 
@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
             });
             res.status(200).json({ message: 'User created successfully', user: newUser });
         }
-        
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
