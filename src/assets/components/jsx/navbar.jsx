@@ -5,7 +5,7 @@ import {Grid, House, Book, User} from 'lucide-react'
 
 import { useContext } from 'react';
 import { UserContext } from '../../userContext.js';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export default function NavBar() {
   const { userInfo, userQuests, loading } = useContext(UserContext);

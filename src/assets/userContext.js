@@ -5,7 +5,10 @@ export const UserContext = createContext();
 
 export function UserProvider({children}) {
     const API = 'https://ascend-mauve.vercel.app'
-    const username = JSON.parse(sessionStorage.getItem('whoami')).username;
+
+
+
+    const username = JSON.parse(sessionStorage.getItem('whoami'))?.username;
 
     const [userQuests, setUserQuests] = useState({});
     const [questlib, setQuestlib] = useState([]);
