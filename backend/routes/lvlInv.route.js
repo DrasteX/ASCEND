@@ -8,7 +8,7 @@ router.get('/', async (req,res)=>{
 
 router.post('/add', async (req,res)=>{
     try {
-        const li = lvlInv.create(req.body);
+        const li = await lvlInv.create(req.body);
         res.status(200).json(li)
     }
     catch(err){
@@ -17,7 +17,7 @@ router.post('/add', async (req,res)=>{
 })
 router.get('/find', async (req,res)=>{
     try {
-        const li = lvlInv.findById(req.query.id);
+        const li = await lvlInv.findById(req.query.id);
         res.status(200).json(li)
     }
     catch(err){
@@ -26,7 +26,7 @@ router.get('/find', async (req,res)=>{
 })
 router.get('/listall', async (req,res)=>{
     try {
-        const li = lvlInv.find()
+        const li = await lvlInv.find()
         res.status(200).json(li)
     }
     catch(err){
@@ -36,7 +36,7 @@ router.get('/listall', async (req,res)=>{
 
 router.put('/update', async (req,res)=>{
     try {
-        const li = lvlInv.findByIdAndUpdate(req.query.id, req.body, {new:true});
+        const li = await lvlInv.findByIdAndUpdate(req.query.id, req.body, {new:true});
         res.status(200).json(li)
     }
     catch(err){
@@ -46,7 +46,7 @@ router.put('/update', async (req,res)=>{
 
 router.delete('/delete', async (req,res)=>{
     try {
-        const li = lvlInv.findByIdAndDelete(req.query.id);
+        const li = await lvlInv.findByIdAndDelete(req.query.id);
         res.status(200).json(li)
     }
     catch(err){
