@@ -13,33 +13,54 @@ export default function Home() {
     const username =JSON.parse(sessionStorage.getItem('whoami')).username;
     const [userQuests, setUserQuests] = useState({});
     const [questlib, setQuestlib] = useState([]);
+    const [userInfo, setUserInfo] = useState({});
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-    fetch(`${API}/api/userquests/find?id=${username}`)
-        .then(response => response.json())
-        .then(data => {
-            setUserQuests(data);
+        // Fetch user quests data
+        fetch(`${API}/api/userquests/find?id=${username}`)
+            .then(response => response.json())
+            .then(data => {
+                setUserQuests(data);
+            })
+            .catch(error => {
+                console.error('Error fetching user quests:', error);
+            });
+
+        // Fetch quest library data
+        fetch(`${API}/api/questlib/all`, {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                }
         })
-        .catch(error => {
-            console.error('Error fetching user quests:', error);
-        });
-    
-    fetch(`${API}/api/questlib/all`, {
-            method: 'GET',
-            headers: {
-            'Content-Type': 'application/json',
-            }
-    })
-        .then(response => response.json())
-        .then(data => {
-            setQuestlib(data);
-        })
-        .catch(error => {
-            console.error('Error fetching quest library:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                setQuestlib(data);
+            })
+            .catch(error => {
+                console.error('Error fetching quest library:', error);
+            });
+
+        // Fetch user info
+        fetch(`${API}/api/userinfo/find?id=${username}`)
+            .then(response => response.json())
+            .then(data => {
+                setUserInfo(data);
+            })
+            .catch(error => {
+                console.error('Error fetching user info:', error);
+            });
     
     }, []);
+
+    // Check if the user has filled the UserInfo form
+    useEffect(() => {
+        if (userInfo && userInfo.userRealName && userInfo.userRealName !== '') {
+            // Redirect to UserInfo page if the form is not filled
+            navigate('/userinfo');
+        }
+    }, [userInfo, username, navigate]);
 
   return (
     <div>
