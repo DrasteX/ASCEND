@@ -32,7 +32,7 @@ export function UserProvider({children}) {
                     fetch(`${API}/api/questlib/all`),
                     fetch(`${API}/api/userinfo/find?id=${username}`),
                     fetch(`${API}/api/lvlinv/find?id=${username}`),
-                    fetch(`${API}/api/itemlib/find?id=${username}`)
+                    fetch(`${API}/api/itemlib/listall`)
                 ]);
 
                 const [userQuestsData, questlibData, userInfoData, lvlinvData, itemlibData] = await Promise.all([

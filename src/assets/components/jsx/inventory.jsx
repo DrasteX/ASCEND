@@ -23,7 +23,7 @@ export default function Inventory() {
 
             return (
 
-              <div className="inv_item">
+              <div onClick={()=>{window.open(myItem.itemURL, '_blank')}} key={idx} className="inv_item">
                 <img src={myItem.itemIcon} className='inv_item_icon'/>
                 <div className='inv_item_info'>
                   <span className='inv_item_titleTxt'>{myItem.itemName}</span>
