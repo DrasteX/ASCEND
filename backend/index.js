@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const userInfoRoute = require('./routes/userinfo.route.js');
 const questlibRoute = require('./routes/questlib.route.js');
 const accountsRoute = require('./routes/accounts.route.js');
+const lvlInvRoute = require('./routes/lvlInv.route.js');
+const itemlibRoute = require('./routes/itemlib.route.js')
 const app = express();
 const cors = require('cors');
 
@@ -25,6 +27,9 @@ app.use(express.static("public"));
 
 
 // Routes
+
+app.use('/api/lvlinv', lvlInvRoute);
+app.use('/api/itemlib', itemlibRoute)
 app.use('/api/userquests', require('./routes/userQuests.route.js'));
 app.use('/api/accounts', accountsRoute);
 app.use('/api/userinfo', userInfoRoute);
