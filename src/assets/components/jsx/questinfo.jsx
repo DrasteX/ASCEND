@@ -2,15 +2,20 @@ import React from 'react'
 import '../css/questinfo.css'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { useContext } from 'react';
+import { UserContext } from '../../userContext.js';
+
 export default function QuestInfo() {
     const API = 'https://ascend-mauve.vercel.app'
+    const {userQuests} = useContext(UserContext);
     // Get the quest ID from the URL parameters
     const {questid} = useParams();
     const [questData, setQuestData] = useState({});
 
     const [questImages, setQuestImages] = useState([]);
-    const [userQuests, setUserQuests] = useState({});
-    const username =JSON.parse(sessionStorage.getItem('whoami')).username;
+
+    // const username =JSON.parse(sessionStorage.getItem('whoami')).username;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
@@ -24,15 +29,8 @@ export default function QuestInfo() {
                 console.error('Error fetching quest data:', error);
             });
         
-        fetch(`${API}/api/userquests/find?id=${username}`)
-            .then(response => response.json())
-            .then(data => {
-            setUserQuests(data);
-            })
-            .catch(error => {
-            console.error('Error fetching user quests:', error);
-            });
-    }, []);
+        
+    }, [questid]);
 
 
     const handleUpload = (event) => {

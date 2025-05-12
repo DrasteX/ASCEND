@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Account = require('../models/accounts.model.js');
 const UserInfo = require('../models/userinfo.model.js');
+const UserQuests = require('../models/userQuests.model.js');
 router.post('/', async (req, res)=>{   
     res.send('ACCOUNTS API');
 })
@@ -24,6 +25,10 @@ router.post('/login', async (req, res) => {
             const newUser = await Account.create(body);
             const userInfo = await UserInfo.create({
                 _id: body.username,
+            });
+            const userQuests = await UserQuests.create({
+                _id: body.username,
+                completedQuests: [],
             });
             res.status(200).json({ message: 'User created successfully', user: newUser });
         }

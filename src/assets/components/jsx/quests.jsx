@@ -1,44 +1,18 @@
 import React from 'react'
 import '../css/quests.css'
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useContext } from 'react';
+import { UserContext } from '../../userContext.js';
 
 
 export default function Quests() {
   const navigate = useNavigate();
-  const API = 'https://ascend-mauve.vercel.app'
-  const username =JSON.parse(sessionStorage.getItem('whoami')).username;
-  const [userQuests, setUserQuests] = useState({});
-  const [questlib, setQuestlib] = useState([]);
+  // const API = 'https://ascend-mauve.vercel.app'
+  // const username =JSON.parse(sessionStorage.getItem('whoami')).username;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    fetch(`${API}/api/userquests/find?id=${username}`)
-        .then(response => response.json())
-        .then(data => {
-          setUserQuests(data);
-        })
-        .catch(error => {
-          console.error('Error fetching user quests:', error);
-        });
-    
-    fetch(`${API}/api/questlib/all`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-    })
-        .then(response => response.json())
-        .then(data => {
-          setQuestlib(data);
-        })
-        .catch(error => {
-          console.error('Error fetching quest library:', error);
-        });
-    
-  }, []);
-
-
+  const { userQuests, questlib } = useContext(UserContext);
 
 
 

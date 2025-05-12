@@ -1,66 +1,24 @@
 import React from 'react'
 import { BookCheck, ArrowBigUpDash } from 'lucide-react'
 import '../css/home.css'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect} from 'react';
+import { UserContext } from '../../userContext.js';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
     const navigate = useNavigate();
+    const { userQuests, questlib, userInfo, loading } = useContext(UserContext);
 
-    const API = 'https://ascend-mauve.vercel.app'
+    // const API = 'https://ascend-mauve.vercel.app'
 
-    
     const username =JSON.parse(sessionStorage.getItem('whoami')).username;
-    const [userQuests, setUserQuests] = useState({});
-    const [questlib, setQuestlib] = useState([]);
-    const [userInfo, setUserInfo] = useState({});
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => {
-        // Fetch user quests data
-        fetch(`${API}/api/userquests/find?id=${username}`)
-            .then(response => response.json())
-            .then(data => {
-                setUserQuests(data);
-            })
-            .catch(error => {
-                console.error('Error fetching user quests:', error);
-            });
-
-        // Fetch quest library data
-        fetch(`${API}/api/questlib/all`, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json',
-                }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setQuestlib(data);
-            })
-            .catch(error => {
-                console.error('Error fetching quest library:', error);
-            });
-
-        // Fetch user info
-        fetch(`${API}/api/userinfo/find?id=${username}`)
-            .then(response => response.json())
-            .then(data => {
-                setUserInfo(data);
-            })
-            .catch(error => {
-                console.error('Error fetching user info:', error);
-            });
-    
-    }, []);
 
     // Check if the user has filled the UserInfo form
     useEffect(() => {
-        if (userInfo && userInfo.userRealName && userInfo.userRealName !== '') {
-            // Redirect to UserInfo page if the form is not filled
+        if (!loading && !userInfo?.userRealName) {
             navigate('/userinfo');
         }
-    }, [userInfo, username, navigate]);
+    }, [loading, userInfo, navigate]);
 
   return (
     <div>
@@ -108,6 +66,10 @@ export default function Home() {
             
         </div>
         
+        
+    {
+        userQuests?.availableQuests && Object.keys(userQuests?.availableQuests).length > 0 &&
+      
         <div className="homepage_quests">
             <h2 className="homepage_quests_title">Active Quests</h2>
             <div className="hpage_quests_list">
@@ -132,7 +94,8 @@ export default function Home() {
             </div>
 
         </div>
-
+        
+    }
 
     </div>
   )

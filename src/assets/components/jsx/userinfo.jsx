@@ -66,6 +66,7 @@ export default function UserInfo() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Response:', data);
+        window.location.reload();
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -78,37 +79,37 @@ export default function UserInfo() {
       <form className="userinfo_container" onSubmit={handleSubmit}>
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Name </label>
-          <input onChange={handleChange} type="text" id="userRealName" className='userinfo_input' placeholder='Name' value={userInfo.userRealName } />
+          <input required onChange={handleChange} type="text" id="userRealName" className='userinfo_input' placeholder='Name' value={userInfo.userRealName } />
         </div>
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Age</label>
-          <input  onChange={handleChange} type="text" id="userAge" className='userinfo_input' placeholder='Age' value={userInfo.userAge } />
+          <input required onChange={handleChange} type="text" id="userAge" className='userinfo_input' placeholder='Age' value={userInfo.userAge } />
         </div>
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Address</label>
-          <input  onChange={handleChange} type="text" id="userAddress" className='userinfo_input' placeholder='Address'  value={userInfo.userAddress } />
+          <input required onChange={handleChange} type="text" id="userAddress" className='userinfo_input' placeholder='Address'  value={userInfo.userAddress } />
         </div>
 
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Your Hobbies </label>
-          <input  onChange={handleChange} type="text" id="userHobbies" className='userinfo_input' placeholder='What are your Hobbies?' value={userInfo.userHobbies } />
+          <input required onChange={handleChange} type="text" id="userHobbies" className='userinfo_input' placeholder='What are your Hobbies?' value={userInfo.userHobbies } />
         </div>
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Your Skills </label>
-          <input  onChange={handleChange} type="text" id="userSkills" className='userinfo_input' placeholder='What are your Skills?' value={userInfo.userSkills }/>
+          <input required onChange={handleChange} type="text" id="userSkills" className='userinfo_input' placeholder='What are your Skills?' value={userInfo.userSkills }/>
         </div>
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Your Interests </label>
-          <input  onChange={handleChange} type="text" id="userInterests" className='userinfo_input' placeholder='What are your Interests?' value={userInfo.userInterests }/>
+          <input required onChange={handleChange} type="text" id="userInterests" className='userinfo_input' placeholder='What are your Interests?' value={userInfo.userInterests }/>
         </div>
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Tell Us about yourself! </label>
-          <textarea  onChange={handleChange} style={{resize:"none", height: "100px", paddingTop: "15px"}} id="userAbout" name="userAbout" className='userinfo_input' placeholder='What are your goals? What do you think of yourself and people around you? Tell us whatever comes to your mind!' value={userInfo.userAbout}/>
+          <textarea required onChange={handleChange} style={{resize:"none", height: "100px", paddingTop: "15px"}} id="userAbout" name="userAbout" className='userinfo_input' placeholder='What are your goals? What do you think of yourself and people around you? Tell us whatever comes to your mind!' value={userInfo.userAbout}/>
         </div>
         
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Are you a Student? </label>
-          <select  onChange={handleChange} id="userStudent" className='userinfo_input' selected value={userInfo.userStudent || 'No'}>
+          <select onChange={handleChange} id="userStudent" className='userinfo_input' selected value={userInfo.userStudent || 'No'}>
             <option value="Yes, School">Yes, I am in School</option>
             <option value="Yes, College">Yes, I am in a College/University</option>
             <option value="No">No, I am not a Student</option>
