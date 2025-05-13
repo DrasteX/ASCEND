@@ -3,6 +3,7 @@ const router = express.Router();
 const Account = require('../models/accounts.model.js');
 const UserInfo = require('../models/userinfo.model.js');
 const UserQuests = require('../models/userQuests.model.js');
+const lvlinv = require('../models/lvlInv.model.js')
 router.post('/', async (req, res) => {
     res.send('ACCOUNTS API');
 })
@@ -24,6 +25,9 @@ router.post('/login', async (req, res) => {
         } else {
             const newUser = await Account.create(body);
             const userInfo = await UserInfo.create({
+                _id: body.username,
+            });
+            const userlvlinv = await lvlinv.create({
                 _id: body.username,
             });
             const userQuests = await UserQuests.create({
