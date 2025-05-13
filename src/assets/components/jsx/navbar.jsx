@@ -8,7 +8,7 @@ import { UserContext } from '../../userContext.js';
 // import { useEffect } from 'react';
 
 export default function NavBar() {
-  const { userInfo, userQuests, loading } = useContext(UserContext);
+  const { userInfo, userQuests, userlvlinv, loading } = useContext(UserContext);
 
   var isIncomplete = (!loading && !userInfo?.userRealName)
 
@@ -17,12 +17,14 @@ export default function NavBar() {
     (userQuests?.completedQuests?.length || 0) === 0
   );
 
+  const emptyInv = (!(userlvlinv?.inventoryItems?.length || 0) > 0)
+
 
   return (
     
     <nav className="navbar">
       <Link to="/" className={`navbar-brand ${isIncomplete ? 'disabled':''}`}> <House size={25}/> Home</Link>
-      <Link to="/inventory" className={`navbar-brand ${isIncomplete ? 'disabled':''}`}> <Grid size={25}/> Inventory</Link>
+      <Link to="/inventory" className={`navbar-brand ${isIncomplete || emptyInv ? 'disabled':''}`}> <Grid size={25}/> Inventory</Link>
       <Link to="/quests" className={`navbar-brand ${(isIncomplete || noQuests) ? 'disabled':''}`}> <Book size={25}/> Quests</Link>
       <Link to="/userinfo" className={`navbar-brand ${isIncomplete ? 'disabled':''}`}> <User size={25}/> YOU</Link>
     </nav>

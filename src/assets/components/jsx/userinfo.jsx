@@ -1,8 +1,10 @@
 import React from 'react'
 import '../css/userinfo.css'
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserInfo() {
+  const navigate = useNavigate()
   const API = 'https://ascend-mauve.vercel.app'
   const username = JSON.parse(sessionStorage.getItem('whoami'))?.username;
   
@@ -76,7 +78,7 @@ export default function UserInfo() {
       .then((response) => response.json())
       .then((data) => {
         console.log('Response:', data);
-        window.location.reload();
+        navigate('/')
       })
       .catch((error) => {
         console.error('Error:', error);
