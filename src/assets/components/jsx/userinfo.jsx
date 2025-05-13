@@ -4,10 +4,20 @@ import { useState, useEffect } from 'react';
 
 export default function UserInfo() {
   const API = 'https://ascend-mauve.vercel.app'
-  const username = JSON.parse(sessionStorage.getItem('whoami')).username;
+  const username = JSON.parse(sessionStorage.getItem('whoami'))?.username;
   
 
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({
+    userRealName: '',
+    userAge: '',
+    userAddress: '',
+    userHobbies: '',
+    userSkills: '',
+    userInterests: '',
+    userAbout: '',
+    userStudent: 'No',
+    userProfessional: false
+  });
 
   useEffect(()=>{
     fetch(`${API}/api/userinfo/find?id=${username}`, {
@@ -109,7 +119,7 @@ export default function UserInfo() {
         
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Are you a Student? </label>
-          <select onChange={handleChange} id="userStudent" className='userinfo_input' selected value={userInfo.userStudent || 'No'}>
+          <select onChange={handleChange} id="userStudent" className='userinfo_input' value={userInfo.userStudent || 'No'}>
             <option value="Yes, School">Yes, I am in School</option>
             <option value="Yes, College">Yes, I am in a College/University</option>
             <option value="No">No, I am not a Student</option>
@@ -117,7 +127,7 @@ export default function UserInfo() {
         </div>
         <div className="userinfo_item">
           <label className='userinfo_titletxt'>Are you a Working Professional? </label>
-          <select  onChange={handleChange} id="userProfessional" className='userinfo_input' selected value={userInfo.userProfessional || false}>
+          <select  onChange={handleChange} id="userProfessional" className='userinfo_input' value={userInfo.userProfessional || false}>
             <option value={true}>Yes, I am a Working Professional</option>
             <option value={false}>No, I am not a Working Professional</option>
           </select>
